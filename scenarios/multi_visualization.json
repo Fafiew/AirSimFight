@@ -1,0 +1,21 @@
+{
+  "world": {"size": 20000},
+  "attackers": [
+    {"id": "a1", "position": [8000, 200, 3000]},
+    {"id": "a2", "position": [8200, -100, 3200]},
+    {"id": "a3", "position": [7900, 50, 2800]},
+    {"id": "a4", "position": [8100, 150, 3100]},
+    {"id": "a5", "position": [7800, -200, 2900]}
+  ],
+  "defenders": [
+    {"id": "d1", "position": [200, 0, 0]},
+    {"id": "d2", "position": [250, 30, 20]},
+    {"id": "d3", "position": [180, -20, 10]},
+    {"id": "d4", "position": [220, 10, -15]},
+    {"id": "d5", "position": [190, -10, 5]}
+  ],
+  "targets": [
+    {"id": "t1", "position": [0, 0, 0]},
+    {"id": "t2", "position": [100, 0, 50]}
+  ]
+}

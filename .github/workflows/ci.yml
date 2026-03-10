@@ -1,0 +1,65 @@
+# CI workflow for AirSimFight
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10']
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest -q --tb=short
+
+    - name: Check imports
+      run: |
+        python -c "import sim; print('sim module OK')"
+        python -c "import rl; print('rl module OK')"
+        python -c "import viz; print('viz module OK')"
+
+    - name: Verify trainer help
+      run: |
+        python -m rl.trainer_pretrain --help
+        python -m rl.trainer_dual --help
+
+    - name: Verify no max_speed
+      run: |
+        python -c "
+        import sys
+        sys.path.insert(0, '.')
+        from sim.entities import Attacker
+        import inspect
+        source = inspect.getsource(Attacker)
+        if 'max_speed' in source:
+            print('ERROR: max_speed found in Attacker source!')
+            sys.exit(1)
+        print('Verified: No max_speed in Attacker')
+        "
