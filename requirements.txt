@@ -1,0 +1,32 @@
+# AirSimFight Dependencies
+
+# Core physics and simulation
+pybullet>=7.0.0
+numpy>=1.24.0
+
+# Deep learning
+torch>=2.0.0
+
+# Reinforcement learning
+stable-baselines3>=2.0.0
+gymnasium>=0.29.0
+
+# Optional RLlib (for multi-agent scaling)
+ray[default]>=2.10.0
+
+# Visualization
+panda3d>=1.10.0
+
+# Configuration and validation
+pyyaml>=6.0
+jsonschema>=4.17.0
+
+# Logging
+tensorboard>=2.12.0
+
+# Testing
+pytest>=7.3.0
+pytest-cov>=4.1.0
+
+# Utilities
+scipy>=1.10.0
