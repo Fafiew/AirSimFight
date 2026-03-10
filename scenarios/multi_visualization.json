@@ -1,0 +1,6 @@
+{
+  "world": {"size": 20000},
+  "attackers": [{"id": "a1", "position": [1200, 200, 2200]}, {"id": "a2", "position": [1300, -300, 2100]}],
+  "defenders": [{"id": "d1", "position": [0, 200, 0]}, {"id": "d2", "position": [0, -250, 0]}],
+  "targets": [{"id": "t1", "position": [0, 0, 0]}]
+}
